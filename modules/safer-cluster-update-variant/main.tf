@@ -155,8 +155,9 @@ module "gke" {
   dns_cache = var.dns_cache
 
 
-  config_connector        = var.config_connector
-  gke_backup_agent_config = var.gke_backup_agent_config
+  config_connector            = var.config_connector
+  gke_backup_agent_config     = var.gke_backup_agent_config
+  enable_secret_manager_addon = var.enable_secret_manager_addon
 
   cluster_dns_provider = var.cluster_dns_provider
 
