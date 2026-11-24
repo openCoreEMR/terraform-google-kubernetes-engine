@@ -48,9 +48,10 @@ module "gke" {
 
   master_authorized_networks = var.master_authorized_networks
 
-  subnetwork        = var.subnetwork
-  ip_range_pods     = var.ip_range_pods
-  ip_range_services = var.ip_range_services
+  subnetwork                  = var.subnetwork
+  ip_range_pods               = var.ip_range_pods
+  additional_ip_ranges_config = var.additional_ip_ranges_config
+  ip_range_services           = var.ip_range_services
 
   disable_default_snat = var.disable_default_snat
 

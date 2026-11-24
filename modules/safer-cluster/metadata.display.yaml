@@ -31,6 +31,9 @@ spec:
         add_cluster_firewall_rules:
           name: add_cluster_firewall_rules
           title: Add Cluster Firewall Rules
+        additional_ip_ranges_config:
+          name: additional_ip_ranges_config
+          title: Additional Ip Ranges Config
         authenticator_security_group:
           name: authenticator_security_group
           title: Authenticator Security Group
