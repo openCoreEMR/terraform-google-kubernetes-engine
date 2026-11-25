@@ -155,6 +155,12 @@ variable "additional_ip_range_pods" {
   default     = []
 }
 
+variable "additional_ip_ranges_config" {
+  type        = list(object({ subnetwork = string, pod_ipv4_range_names = list(string) }))
+  description = "the configuration for individual additional subnetworks attached to the cluster. List every additional subnet attached to the cluster, with every Pod range attached from it, before upgrading: one attached outside Terraform is removed on the next apply, and the apply fails while a node pool still uses it. GKE may place a node pool that this module creates without its own Pod range in one of these subnets by IP utilization, but the module cannot choose one. To place a pool explicitly, use google_container_node_pool network_config.subnetwork, which needs provider 7.24.0 or later: create it with google-beta at that version in the same root (this module pins only google below 7), or in a separate root with its own state."
+  default     = []
+}
+
 variable "ip_range_services" {
   type        = string
   description = "The _name_ of the secondary subnet range to use for services. If not provided, the default `34.118.224.0/20` range will be used."
