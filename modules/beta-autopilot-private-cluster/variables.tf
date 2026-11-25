@@ -166,7 +166,7 @@ variable "additional_ip_range_pods" {
 
 variable "additional_ip_ranges_config" {
   type        = list(object({ subnetwork = string, pod_ipv4_range_names = list(string) }))
-  description = "the configuration for individual additional subnetworks attached to the cluster. List every additional subnet attached to the cluster before upgrading: one attached outside Terraform is removed on the next apply. GKE manages Autopilot node pools and chooses the subnet each one uses."
+  description = "the configuration for individual additional subnetworks attached to the cluster. List every additional subnet attached to the cluster before upgrading: one attached outside Terraform is removed on the next apply, and the apply fails while a node pool still uses it. GKE manages Autopilot node pools and chooses the subnet each one uses."
   default     = []
 }
 
