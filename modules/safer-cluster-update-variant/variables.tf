@@ -138,7 +138,7 @@ variable "ip_range_pods" {
 
 variable "additional_ip_ranges_config" {
   type        = list(object({ subnetwork = string, pod_ipv4_range_names = list(string) }))
-  description = "the configuration for individual additional subnetworks attached to the cluster. List every additional subnet attached to the cluster before upgrading: one attached outside Terraform is removed on the next apply. Node pools created by this module cannot select these subnets; create a pool for one outside the module (google_container_node_pool network_config.subnetwork, provider 7.24.0 or later)."
+  description = "the configuration for individual additional subnetworks attached to the cluster. List every additional subnet attached to the cluster before upgrading: one attached outside Terraform is removed on the next apply. Node pools created by this module cannot select these subnets. Create a pool for one in a separate root configuration with its own state (google_container_node_pool network_config.subnetwork, provider 7.24.0 or later): this module requires a google provider below 7, so the pool cannot share its root."
   default     = []
 }
 
