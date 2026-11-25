@@ -277,7 +277,9 @@ resource "google_container_cluster" "primary" {
     dynamic "additional_ip_ranges_config" {
       for_each = var.additional_ip_ranges_config
       content {
-        subnetwork           = additional_ip_ranges_config.value.subnetwork
+        # A short name resolves in the network project and the cluster region, as
+        # var.subnetwork does; a self link or projects/... path passes through.
+        subnetwork           = length(regexall("/", additional_ip_ranges_config.value.subnetwork)) > 0 ? additional_ip_ranges_config.value.subnetwork : "projects/${local.network_project_id}/regions/${local.region}/subnetworks/${additional_ip_ranges_config.value.subnetwork}"
         pod_ipv4_range_names = additional_ip_ranges_config.value.pod_ipv4_range_names
       }
     }
